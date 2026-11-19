@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nova Market - Responsive Mailing</title>
+    <style>
+        * {
+            /* Padding ve kenarlıkların kutunun genişliğine dahil olmasını sağlar. */
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            color: #2c352d;
+            background-color: #eeeeee;
+        }
+
+        .mailing {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #ffffff;
+        }
+
+        /* 1. ÜST BANT VE LOGO */
+        .ust-bant {
+            background-color: #3b533e;
+            color: #ffffff;
+            text-align: center;
+            padding: 10px 15px;
+            font-size: 13px;
+        }
+
+        .mobil-gizle {
+            display: inline;
+        }
+
+        .logo-alani {
+            background-color: #ffffff;
+            text-align: center;
+            padding: 25px 15px 15px 15px;
+        }
+
+        .logo-alani img {
+            width: 240px;
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .logo-alt-yazi {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 8px;
+            font-size: 12px;
+            font-style: italic;
+            color: #555555;
+        }
+
+        .logo-alt-yazi::before,
+        .logo-alt-yazi::after {
+            content: "";
+            width: 60px;
+            height: 1px;
+            background-color: #cccccc;
+        }
+
+        /* 2. BANNER ALANI */
+        .banner {
+            position: relative;
+            margin: 0 20px;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .banner img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .banner-yazi {
+            position: absolute;
+            top: 35px;
+            left: 35px;
+            max-width: 320px;
+        }
+
+        .slogan {
+            font-family: Georgia, serif;
+            font-size: 40px;
+            font-weight: bold;
+            line-height: 1.1;
+            color: #2c352d;
+        }
+
+        .alt-baslik {
+            margin-top: 12px;
+            font-size: 16px;
+            line-height: 1.4;
+            color: #3d473e;
+        }
+
+        .turuncu-buton {
+            display: inline-block;
+            margin-top: 18px;
+            padding: 10px 22px;
+            background-color: #c86428;
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: bold;
+            border-radius: 6px;
+        }
+
+        /* 3. KATEGORİ KUTULARI */
+        .kategori-kutular {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 10px;
+            margin: 15px 20px;
+        }
+
+        .kategori-item {
+            background-color: #e4eadf;
+            padding: 14px 10px;
+            text-align: center;
+            border-radius: 6px;
+            text-decoration: none;
+            color: #2c352d;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        /* ORTAK BÖLÜM BAŞLIĞI (ÇİZGİLİ) */
+        .bolum-basligi-kapsayici {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .bolum-basligi-kapsayici::before,
+        .bolum-basligi-kapsayici::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background-color: #dcdcdc;
+        }
+
+        .bolum-basligi {
+            font-family: Georgia, serif;
+            font-size: 22px;
+            font-weight: bold;
+            color: #2c352d;
+            margin: 0;
+        }
+
+        /* 4. ÖNE ÇIKAN ÜRÜNLER */
+        .one-cikanlar {
+            padding: 20px;
+        }
+
+        .uclu-kartlar {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 15px;
+        }
+
+        .urun-kart {
+            border: 1px solid #e6e6e6;
+            border-radius: 8px;
+            padding: 10px;
+            text-align: center;
+            background-color: #ffffff;
+        }
+
+        .urun-kart img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 6px;
+        }
+
+        .urun-bilgi {
+            margin-top: 12px;
+        }
+
+        .urun-adi {
+            font-size: 15px;
+            font-weight: bold;
+            color: #2c352d;
+        }
+
+        .fiyat {
+            margin-top: 5px;
+            font-size: 15px;
+            font-weight: bold;
+            color: #c86428;
+        }
+
+        .yesil-buton {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 8px 22px;
+            background-color: #3b533e;
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: bold;
+            border-radius: 5px;
+        }
+
+        /* 5. SEZONUN SEÇİMİ */
+        .sezon-secimi {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            align-items: center;
+            background-color: #f7f3ee;
+            margin: 10px 20px;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .sezon-gorsel img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 6px;
+        }
+
+        .sezon-yazi {
+            text-align: left;
+        }
+
+        .sezon-yazi .bolum-basligi {
+            margin-bottom: 10px;
+        }
+
+        .metin {
+            font-size: 14px;
+            line-height: 1.5;
+            color: #555555;
+        }
+
+        /* 6. HIZLI FIRSATLAR */
+        .hizli-firsatlar {
+            padding: 20px;
+        }
+
+        .firsat-kartlar {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 12px;
+        }
+
+        .firsat-item {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            align-items: center;
+            border: 1px solid #e6e6e6;
+            border-radius: 8px;
+            padding: 8px;
+            background-color: #ffffff;
+        }
+
+        .firsat-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 5px;
+        }
+
+        .firsat-detay {
+            text-align: left;
+        }
+
+        .firsat-detay .urun-adi {
+            font-size: 13px;
+        }
+
+        .firsat-detay .fiyat {
+            font-size: 13px;
+            margin-top: 4px;
+        }
+
+        /* 7. ALT BANT VE FOOTER */
+        .alt-uyari {
+            background-color: #f5ebe0;
+            margin: 10px 20px;
+            padding: 15px;
+            text-align: center;
+            border-radius: 8px;
+            font-family: Georgia, serif;
+            font-size: 20px;
+            font-weight: bold;
+            color: #2c352d;
+        }
+
+        .alt-bilgi {
+            padding: 15px 15px 30px 15px;
+            text-align: center;
+            font-size: 12px;
+            color: #666666;
+        }
+
+        .alt-bilgi a {
+            color: #666666;
+            text-decoration: underline;
+        }
+
+        /* ==========================================
+           MOBİL GÖRÜNÜM (600px VE ALTI)
+           ========================================== */
+        @media (max-width: 600px) {
+            .mobil-gizle {
+                display: none;
+            }
+
+            .banner {
+                margin: 0 15px;
+            }
+
+            .banner-yazi {
+                top: 15px;
+                left: 15px;
+                max-width: 180px;
+            }
+
+            .slogan {
+                font-size: 22px;
+            }
+
+            .alt-baslik {
+                font-size: 12px;
+                margin-top: 6px;
+            }
+
+            .turuncu-buton {
+                margin-top: 10px;
+                padding: 7px 14px;
+                font-size: 12px;
+            }
+
+            .kategori-kutular {
+                margin: 12px 15px;
+                gap: 6px;
+            }
+
+            .kategori-item {
+                padding: 10px 5px;
+                font-size: 11px;
+            }
+
+            /* Öne Çıkan Ürünler: Mobilde tek sütun ve görsel solda, yazı sağda */
+            .uclu-kartlar {
+                grid-template-columns: 1fr;
+            }
+
+            .urun-kart {
+                display: grid;
+                grid-template-columns: 110px 1fr;
+                gap: 15px;
+                align-items: center;
+                text-align: left;
+            }
+
+            .urun-bilgi {
+                margin-top: 0;
+            }
+
+            /* Sezonun Seçimi: Mobilde alt alta */
+            .sezon-secimi {
+                grid-template-columns: 1fr;
+                margin: 10px 15px;
+                padding: 15px;
+            }
+
+            /* Hızlı Fırsatlar: Mobilde 3 sütun kalır ama görsel üstte, yazı altta olur */
+            .firsat-kartlar {
+                gap: 8px;
+            }
+
+            .firsat-item {
+                grid-template-columns: 1fr;
+                text-align: center;
+                padding: 6px;
+            }
+
+            .firsat-detay {
+                text-align: center;
+            }
+
+            .firsat-detay .urun-adi {
+                font-size: 11px;
+            }
+
+            .firsat-detay .fiyat {
+                font-size: 11px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="mailing">
+
+        <!-- 1. ÜST BANT VE LOGO -->
+        <div class="ust-bant">
+            &#9752; 75$ üzeri ücretsiz kargo &nbsp;|&nbsp; Kolay iade <span class="mobil-gizle">&nbsp;|&nbsp; Yeni ürünleri keşfet</span>
+        </div>
+
+        <div class="logo-alani">
+            <img src="logo.png" alt="Nova Market Logosu">
+            <div class="logo-alt-yazi">Günlük yaşam için seçili ürünler</div>
+        </div>
+
+        <!-- 2. BANNER VE SLOGAN -->
+        <div class="banner">
+            <img src="01.jpg" alt="Sonbahar Ferahlığı">
+            <div class="banner-yazi">
+                <div class="slogan">Sonbahar<br>Ferahlığı</div>
+                <div class="alt-baslik">Eviniz için sıcak, sade ve şık seçimler</div>
+                <a href="#" class="turuncu-buton">Şimdi Keşfet &rarr;</a>
+            </div>
+        </div>
+
+        <!-- 3. KATEGORİ MENÜSÜ -->
+        <div class="kategori-kutular">
+            <a href="#" class="kategori-item">&#10023; YENİLER</a>
+            <a href="#" class="kategori-item">&#8962; EV YAŞAM</a>
+            <a href="#" class="kategori-item">&#9827; AKSESUAR</a>
+        </div>
+
+        <!-- 4. ÖNE ÇIKAN ÜRÜNLER -->
+        <div class="one-cikanlar">
+            <div class="bolum-basligi-kapsayici">
+                <h2 class="bolum-basligi">Öne Çıkan Ürünler</h2>
+            </div>
+
+            <div class="uclu-kartlar">
+                <div class="urun-kart">
+                    <img src="02.jpg" alt="Işıklı Masa Lambası">
+                    <div class="urun-bilgi">
+                        <div class="urun-adi">Işıklı Masa Lambası</div>
+                        <div class="fiyat">49,00$</div>
+                        <a href="#" class="yesil-buton">İncele</a>
+                    </div>
+                </div>
+
+                <div class="urun-kart">
+                    <img src="03.jpg" alt="Ekose Battaniye">
+                    <div class="urun-bilgi">
+                        <div class="urun-adi">Ekose Battaniye</div>
+                        <div class="fiyat">36,00$</div>
+                        <a href="#" class="yesil-buton">İncele</a>
+                    </div>
+                </div>
+
+                <div class="urun-kart">
+                    <img src="04.jpg" alt="Seramik Kupa Seti">
+                    <div class="urun-bilgi">
+                        <div class="urun-adi">Seramik Kupa Seti</div>
+                        <div class="fiyat">28,00$</div>
+                        <a href="#" class="yesil-buton">İncele</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 5. SEZONUN SEÇİMİ -->
+        <div class="sezon-secimi">
+            <div class="sezon-gorsel">
+                <img src="05.jpg" alt="Sezonun Seçimi">
+            </div>
+            <div class="sezon-yazi">
+                <h2 class="bolum-basligi">Sezonun Seçimi</h2>
+                <div class="metin">
+                    Doğal dokular ve sıcak tonlarla yaşam alanınızı yenileyin. Rahat, modern ve zamansız bir görünüm için özel seçkiler.
+                </div>
+                <a href="#" class="turuncu-buton">İncele</a>
+            </div>
+        </div>
+
+        <!-- 6. HIZLI FIRSATLAR -->
+        <div class="hizli-firsatlar">
+            <div class="bolum-basligi-kapsayici">
+                <h2 class="bolum-basligi">Hızlı Fırsatlar</h2>
+            </div>
+
+            <div class="firsat-kartlar">
+                <div class="firsat-item">
+                    <img src="02.jpg" alt="Mini Saksı Bitkisi">
+                    <div class="firsat-detay">
+                        <div class="urun-adi">Mini Saksı Bitkisi</div>
+                        <div class="fiyat">12,00$</div>
+                    </div>
+                </div>
+
+                <div class="firsat-item">
+                    <img src="05.jpg" alt="Kokulu Mum">
+                    <div class="firsat-detay">
+                        <div class="urun-adi">Kokulu Mum</div>
+                        <div class="fiyat">18,00$</div>
+                    </div>
+                </div>
+
+                <div class="firsat-item">
+                    <img src="04.jpg" alt="Oda Kokusu">
+                    <div class="firsat-detay">
+                        <div class="urun-adi">Oda Kokusu</div>
+                        <div class="fiyat">14,00$</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 7. ALT UYARI VE FOOTER -->
+        <div class="alt-uyari">
+            Fırsatları Kaçırmayın!
+        </div>
+
+        <div class="alt-bilgi">
+            Sorularınız için: <a href="mailto:hello@novamarket.com">hello@novamarket.com</a> &nbsp;|&nbsp; <a href="#">Abonelikten çık</a>
+        </div>
+
+    </div>
+
+</body>
+</html>
